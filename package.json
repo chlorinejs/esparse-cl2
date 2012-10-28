@@ -1,5 +1,5 @@
 {
-     "name": "Simple esparse/esgencode server",
+     "name": "esparse-http",
      "description": "Parse/generate javasript through HTTP",
      "version": "0.0.1",
      "dependencies": {
