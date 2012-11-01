@@ -5,7 +5,8 @@ var express = require("express"),
 
 function adjustRegexLiteral(key, value) {
             if (key === 'value' && value instanceof RegExp) {
-                value = {"RegularExpression": value.toString()};
+                value = {"type": "RegularExpression",
+                         "value": value.toString()};
             }
             return value;
         }
