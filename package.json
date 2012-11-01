@@ -4,7 +4,7 @@
      "version": "0.0.1",
      "dependencies": {
         "express": "3.0.0",
-        "esprima": "1.0.0",
+        "esprima": "1.0.1",
         "escodegen": "0.0.12"
      }
 }

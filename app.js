@@ -3,6 +3,13 @@ var express = require("express"),
     esprima = require('esprima'),
     escodegen = require('escodegen');
 
+function adjustRegexLiteral(key, value) {
+            if (key === 'value' && value instanceof RegExp) {
+                value = {"RegularExpression": value.toString()};
+            }
+            return value;
+        }
+
 app.use(express.bodyParser());
 
 // espares options (JSON):
@@ -20,7 +27,7 @@ app.post('/esparse', function(req, res) {
       options = {};
   }
   }
-  var return_val = JSON.stringify(esprima.parse(js_code, options), null, 0);
+  var return_val = JSON.stringify(esprima.parse(js_code, options), adjustRegexLiteral, 4);
   res.send(return_val);
 
 });
