@@ -24,7 +24,7 @@ process_input  = function (argv) {
 process_json = function (argv, json) {
     var options, output;
     if (argv.source_file) {
-        var source =read(argv.source_file);
+        var source = read(argv.source_file);
         options = {sourceMap: argv.source_file,
                    sourceMapWithCode: true,
                    sourceContent: source};
@@ -33,23 +33,6 @@ process_json = function (argv, json) {
         output_js(argv, output.code);
     } else {
         output_js(argv, escodegen.generate(json));
-    }
-};
-
-// check the command line arguments
-var check_args_fn = function() {
-    // EITHER both source_file and source_map must be used
-    // OR neither
-    var idx1, idx2, product;
-    idx1 = this.process.argv.indexOf('--source_map');
-    idx2 = this.process.argv.indexOf('--source_file');
-    // to be valid either both indexes are positive or they are both negative
-    // so the only valid product is positive
-    product = idx1 * idx2;
-    if (product > 0) {
-        return true;
-    } else {
-        throw "Invalid Arguments: set EITHER both source_map and source_file OR neither";
     }
 };
 
@@ -73,8 +56,25 @@ var write = function (file, contents) {
     });
 };
 
+// check the command line arguments
+var check_args_fn = function() {
+    // EITHER both source_file and source_map must be used
+    // OR neither
+    var idx1, idx2, product;
+    idx1 = this.process.argv.indexOf('--source_map');
+    idx2 = this.process.argv.indexOf('--source_file');
+    // to be valid either both indexes are positive or they are both negative
+    // so the only valid product is positive
+    product = idx1 * idx2;
+    if (product > 0) {
+        return true;
+    } else {
+        throw "Invalid Arguments: set EITHER both source_map and source_file OR neither";
+    }
+};
+
 //
-// Now handle depdencies
+// Now handle dependencies
 //
 
 var argv = require('optimist')
