@@ -1,7 +1,7 @@
 {
   "name": "esparse-cl2",
   "description": "Parse/generate javasript through STDIN, STDOUT",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "bin": {
     "esparse-cl2": "./bin/esparse.js",
     "escodegen-cl2": "./bin/escodegen.js"
